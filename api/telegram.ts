@@ -7,8 +7,8 @@ declare const process: {
 import { Bot, webhookCallback } from "grammy";
 import { generateText } from "ai";
 import agent from "../agent/agent";
-import getWeather from "../agent/tools/get_weather";
-import webSearch from "../agent/tools/web_search";
+import getWeather from "../agent/tools/get_weather.js";
+import webSearch from "../agent/tools/web_search.js";
 
 const token = process.env.TELEGRAM_BOT_TOKEN;
 
