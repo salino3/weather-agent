@@ -1,3 +1,9 @@
+declare const process: {
+  env: {
+    [key: string]: string | undefined;
+  };
+};
+
 import { Bot, webhookCallback } from "grammy";
 import { generateText } from "ai";
 import agent from "../agent/agent";
