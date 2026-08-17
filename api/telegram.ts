@@ -5,7 +5,7 @@ declare const process: {
 };
 
 import { Bot, webhookCallback } from "grammy";
-import { generateText } from "ai";
+import { generateText, stepCountIs } from "ai";
 import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
 import webSearch from "../agent/tools/web_search.js";
@@ -22,21 +22,20 @@ bot.on("message:text", async (ctx) => {
   try {
     await ctx.replyWithChatAction("typing");
 
-    const { text } = await generateText({
+    const result = await generateText({
       model: agent.model,
       tools: {
         getWeather,
         webSearch,
       },
+      stopWhen: stepCountIs(5),
       prompt: ctx.message.text,
     });
 
-    const messageToSend =
-      text && text.trim().length > 0
-        ? text
-        : "I processed your query successfully, but there was no text response to generate.";
+    const responseText =
+      result.text || result.steps?.at(-1)?.text || "No response generated.";
 
-    await ctx.reply(messageToSend);
+    await ctx.reply(responseText);
   } catch (error) {
     console.error("Error processing message:", error);
     await ctx.reply(
