@@ -40,4 +40,4 @@ bot.on("message:text", async (ctx) => {
   }
 });
 
-export default webhookCallback(bot, "express");
+export default webhookCallback(bot, "http");
