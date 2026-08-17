@@ -40,4 +40,13 @@ bot.on("message:text", async (ctx) => {
   }
 });
 
-export default webhookCallback(bot, "http");
+const handleUpdate = webhookCallback(bot, "std/http");
+
+export default async function handler(req: Request) {
+  try {
+    return await handleUpdate(req);
+  } catch (err) {
+    console.error("Webhook error:", err);
+    return new Response("OK", { status: 200 });
+  }
+}
