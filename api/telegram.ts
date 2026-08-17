@@ -31,7 +31,12 @@ bot.on("message:text", async (ctx) => {
       prompt: ctx.message.text,
     });
 
-    await ctx.reply(text);
+    const messageToSend =
+      text && text.trim().length > 0
+        ? text
+        : "I processed your query successfully, but there was no text response to generate.";
+
+    await ctx.reply(messageToSend);
   } catch (error) {
     console.error("Error processing message:", error);
     await ctx.reply(
