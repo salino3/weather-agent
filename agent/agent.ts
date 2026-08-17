@@ -2,7 +2,7 @@
 import { groq } from "@ai-sdk/groq";
 
 export const agent = {
-  model: groq("qwen-2.5-32b"),
+  model: groq("llama-3.3-70b-versatile"),
 };
 
 export default agent;
