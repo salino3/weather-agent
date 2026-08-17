@@ -6,7 +6,7 @@ declare const process: {
 
 import { Bot, webhookCallback } from "grammy";
 import { generateText } from "ai";
-import agent from "../agent/agent";
+import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
 import webSearch from "../agent/tools/web_search.js";
 
