@@ -1,4 +1,4 @@
-import { jsonSchema } from "ai";
+import { tool, jsonSchema } from "ai";
 
 interface WeatherParameters {
   latitude: number;
@@ -6,10 +6,10 @@ interface WeatherParameters {
   date?: string;
 }
 
-const getWeather = {
+const getWeather = tool({
   description:
     "Get current, past, or forecast weather data for a specific location using Open-Meteo API.",
-  parameters: jsonSchema<WeatherParameters>({
+  inputSchema: jsonSchema<WeatherParameters>({
     type: "object",
     properties: {
       latitude: {
@@ -42,6 +42,6 @@ const getWeather = {
 
     return await response.json();
   },
-};
+});
 
 export default getWeather;

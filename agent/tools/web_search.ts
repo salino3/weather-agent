@@ -1,13 +1,13 @@
 import FirecrawlApp from "@mendable/firecrawl-js";
-import { jsonSchema } from "ai";
+import { tool, jsonSchema } from "ai";
 
 interface SearchParameters {
   query: string;
 }
 
-const webSearch = {
+const webSearch = tool({
   description: "Search the web for up-to-date information using Firecrawl API.",
-  parameters: jsonSchema<SearchParameters>({
+  inputSchema: jsonSchema<SearchParameters>({
     type: "object",
     properties: {
       query: {
@@ -30,6 +30,6 @@ const webSearch = {
 
     return searchResult;
   },
-};
+});
 
 export default webSearch;
