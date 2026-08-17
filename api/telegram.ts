@@ -40,13 +40,15 @@ bot.on("message:text", async (ctx) => {
   }
 });
 
-const handleUpdate = webhookCallback(bot, "std/http");
+const handleUpdate = webhookCallback(bot, "http");
 
-export default async function handler(req: Request) {
+export default async function handler(req: any, res: any) {
   try {
-    return await handleUpdate(req);
+    await handleUpdate(req, res);
   } catch (err) {
     console.error("Webhook error:", err);
-    return new Response("OK", { status: 200 });
+    if (!res.headersSent) {
+      res.status(200).send("OK");
+    }
   }
 }
