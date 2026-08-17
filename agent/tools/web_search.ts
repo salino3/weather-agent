@@ -5,7 +5,7 @@ interface SearchParameters {
   query: string;
 }
 
-export const webSearch = {
+const webSearch = {
   description: "Search the web for up-to-date information using Firecrawl API.",
   parameters: jsonSchema<SearchParameters>({
     type: "object",
@@ -31,3 +31,5 @@ export const webSearch = {
     return searchResult;
   },
 };
+
+export default webSearch;

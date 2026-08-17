@@ -6,7 +6,7 @@ interface WeatherParameters {
   date?: string;
 }
 
-export const getWeather = {
+const getWeather = {
   description:
     "Get current, past, or forecast weather data for a specific location using Open-Meteo API.",
   parameters: jsonSchema<WeatherParameters>({
@@ -43,3 +43,5 @@ export const getWeather = {
     return await response.json();
   },
 };
+
+export default getWeather;
