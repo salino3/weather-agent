@@ -7,7 +7,7 @@
     "#evals/*": "./evals/*"
   },
   "scripts": {
-    "build": "tsc",
+    "build": "echo 'No build step required'",
     "dev": "eve dev",
     "start": "eve start",
     "typecheck": "tsc"
