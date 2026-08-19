@@ -32,10 +32,12 @@ bot.on("message:text", async (ctx) => {
       prompt: ctx.message.text,
     });
 
-    const responseText =
+    const generatedText =
       result.text || result.steps?.at(-1)?.text || "No response generated.";
 
-    await ctx.reply(responseText);
+    const finalResponse = `${generatedText}\n\nWeather data by Open-Meteo.com (https://open-meteo.com/)`;
+
+    await ctx.reply(finalResponse);
   } catch (error) {
     console.error("Error processing message:", error);
     await ctx.reply(
