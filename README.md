@@ -9,10 +9,11 @@ And the username is @weather_research_agent_bot
 
 ## Technologies
 
-- Hosting: Vercel
+- Hosting: Vercel (https://vercel.com)
 - Server: Nodejs, Typescript
-- API AI: Firecrawl, Groq
-- Data APIs: Open-Meteo API (Weather Data - https://open-meteo.com/)
+- Bot Framework: grammY (https://grammy.dev)
+- API AI: Firecrawl (https://www.firecrawl.dev), Groq (https://groq.com)
+- Data APIs: Open-Meteo API (Weather Data - https://open-meteo.com)
 
 ## Chatbot Telegram information
 
