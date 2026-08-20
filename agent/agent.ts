@@ -17,7 +17,7 @@ const SYSTEM_PROMPT = `
   - INCLUDE the structured weather forecast within your response as 'key: value' in the exact same language used by the user,
    formatted line-by-line as shown below:
 
-    FORMAT FOR WEATHER DATA:
+    FORMAT FOR WEATHER DATA (all in the exact same language used by the user):
   • Date: DD/MM/YYYY (e.g., 21/08/2026 - Tomorrow)
   • Weather: [Condition]
   • Temp Max: [X]°C
