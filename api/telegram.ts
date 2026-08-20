@@ -92,24 +92,22 @@ bot.on("message:voice", async (ctx) => {
       return;
     }
 
-    // 5. Send transcription audio feed using HTML parsing
-    const escapedText = transcribedText
-      .replace(/&/g, "&amp;")
-      .replace(/</g, "&lt;")
-      .replace(/>/g, "&gt;");
-
-    await ctx.reply(`<b>Audio:</b> "<i>${escapedText}</i>"`, {
-      parse_mode: "HTML",
-    });
-
-    // 6. Send transcribed text to AI model
+    // 5. Send transcribed text to AI model with Tools & Step Count
     const result = await generateText({
       model: agent.model,
       system: agent.systemPrompt,
+      tools: {
+        getWeather,
+        webSearch,
+      },
+      stopWhen: stepCountIs(5),
       prompt: transcribedText,
     });
 
-    await ctx.reply(result.text);
+    // 6. Append attribution line
+    const finalResponse = `${result.text}\n\nWeather data by Open-Meteo.com (https://open-meteo.com/)`;
+
+    await ctx.reply(finalResponse);
   } catch (error) {
     console.error("Error processing voice message:", error);
     await ctx.reply("An error occurred while processing the voice message.");
