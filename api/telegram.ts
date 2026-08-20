@@ -5,7 +5,7 @@ declare const process: {
 };
 
 import { Bot, Context, Filter, webhookCallback } from "grammy";
-import { Buffer } from "node:buffer";
+import { Buffer } from "buffer";
 import { generateText, stepCountIs } from "ai";
 import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
