@@ -28,9 +28,6 @@ importers:
       grammy:
         specifier: ^1.45.1
         version: 1.45.1
-      zod:
-        specifier: 4.4.3
-        version: 4.4.3
     devDependencies:
       '@types/node':
         specifier: ^24.13.3
