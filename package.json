@@ -18,6 +18,7 @@
     "@vercel/connect": "0.4.3",
     "ai": "^7.0.58",
     "eve": "^0.38.3",
+    "fetch-blob": "^4.0.0",
     "grammy": "^1.45.1"
   },
   "devDependencies": {
