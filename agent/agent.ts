@@ -26,13 +26,20 @@ const SYSTEM_PROMPT = `
   • Precipitation Chance: [Z]% (include only if available)
   • Rain Amount: [W] mm (include only if available)
   
-  (If providing forecasts for multiple days, separate each day with a divider like "**--------------------------").
+  (If providing informations for multiple days, separate each day with a divider like "**--------------------------").
 
   FINAL CHECK:
   - NEVER use English labels (like "Date", "Weather", "Temp Max", "Rain Amount") if the user is writing in another language.
   - Verify every output key is translated into the user's language before returning the final response.
 
-  6. Keep response readable and friendly for non-technical users.`;
+  FINAL CHECK:
+  - NEVER use English labels (like "Date", "Weather", "Temp Max", "Rain Amount") if the user is writing in another language.
+  - Verify every output key is translated into the user's language before returning the final response.
+
+  6. Keep response readable and friendly for non-technical users.
+  7. If the user query is incomplete or lacks details (such as the city name), 
+  briefly ask for clarification and gently remind them in one sentence that you do not retain conversation history, so they must include the location in their new message.
+  `;
 
 // 'GROQ_API_KEY' default enviroment variable for api key
 export const agent = {
