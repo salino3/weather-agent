@@ -26,7 +26,10 @@ const SYSTEM_PROMPT = `
   
   (If providing forecasts for multiple days, separate each day with a divider like "**--------------------------").
 
-  6. Keep response readable and friendly for non-technical users.`;
+  6. Keep response readable and friendly for non-technical users.
+  7. If the user query is incomplete or lacks details (such as the city name), 
+  briefly ask for clarification and gently remind them in one sentence that you do not retain conversation history, so they must include the location in their new message.
+  `;
 
 // 'GROQ_API_KEY' default enviroment variable for api key
 export const agent = {
