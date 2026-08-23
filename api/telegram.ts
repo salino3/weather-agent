@@ -25,7 +25,7 @@ bot.on("message:text", async (ctx: TextContextType) => {
   try {
     await ctx.replyWithChatAction("typing");
 
-    const sanitizedInput: string = ctx.message.text.trim().slice(0, 500);
+    const cleanInput: string = ctx.message.text.trim().slice(0, 500);
 
     const result = await generateText({
       model: agent.model,
@@ -35,7 +35,7 @@ bot.on("message:text", async (ctx: TextContextType) => {
         webSearch,
       },
       stopWhen: stepCountIs(5),
-      prompt: sanitizedInput,
+      prompt: cleanInput,
     });
 
     const generatedText: string =
