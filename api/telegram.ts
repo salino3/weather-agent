@@ -10,6 +10,7 @@ import { generateText, stepCountIs } from "ai";
 import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
 import webSearch from "../agent/tools/web_search.js";
+import { sanitizeInput } from "../store/utils.js";
 import { GROQ_API_KEY, TELEGRAM_BOT_TOKEN } from "../store/constants.js";
 
 export type TextContextType = Filter<Context, "message:text">;
@@ -26,7 +27,7 @@ bot.on("message:text", async (ctx: TextContextType) => {
   try {
     await ctx.replyWithChatAction("typing");
 
-    const cleanInput: string = ctx.message.text.trim().slice(0, 500);
+    const sanitizedTextInput = sanitizeInput(ctx.message.text, 500);
 
     const result = await generateText({
       model: agent.model,
@@ -36,7 +37,7 @@ bot.on("message:text", async (ctx: TextContextType) => {
         webSearch,
       },
       stopWhen: stepCountIs(5),
-      prompt: `[USER INPUT START]\n${cleanInput}\n[USER INPUT END]`,
+      prompt: `[USER INPUT START]\n${sanitizedTextInput}\n[USER INPUT END]`,
     });
 
     const generatedText: string =
@@ -93,6 +94,13 @@ bot.on("message:voice", async (ctx) => {
       return;
     }
 
+    const sanitizedVoiceInput = sanitizeInput(transcribedText, 500);
+
+    if (!sanitizedVoiceInput) {
+      await ctx.reply("Audio not recognized. Please try speaking again.");
+      return;
+    }
+
     // 5. Send transcribed text to AI model with Tools & Step Count
     const result = await generateText({
       model: agent.model,
@@ -102,7 +110,7 @@ bot.on("message:voice", async (ctx) => {
         webSearch,
       },
       stopWhen: stepCountIs(5),
-      prompt: transcribedText,
+      prompt: `[USER INPUT START]\n${sanitizedVoiceInput}\n[USER INPUT END]`,
     });
 
     // 6. Append attribution line
