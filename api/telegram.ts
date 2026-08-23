@@ -35,7 +35,7 @@ bot.on("message:text", async (ctx: TextContextType) => {
         webSearch,
       },
       stopWhen: stepCountIs(5),
-      prompt: cleanInput,
+      prompt: `[USER INPUT START]\n${cleanInput}\n[USER INPUT END]`,
     });
 
     const generatedText: string =
