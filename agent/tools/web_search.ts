@@ -1,6 +1,6 @@
 import FirecrawlApp from "@mendable/firecrawl-js";
 import { tool, jsonSchema } from "ai";
-import { FIRECRAWL_API_KEY } from "../../store/constants";
+import { FIRECRAWL_API_KEY } from "../../store/constants.js";
 
 interface SearchParameters {
   query: string;
