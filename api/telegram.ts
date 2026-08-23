@@ -10,10 +10,11 @@ import { generateText, stepCountIs } from "ai";
 import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
 import webSearch from "../agent/tools/web_search.js";
+import { TELEGRAM_BOT_TOKEN } from "../store/constants.js";
 
 export type TextContextType = Filter<Context, "message:text">;
 
-const token = process.env.TELEGRAM_BOT_TOKEN;
+const token = TELEGRAM_BOT_TOKEN;
 
 if (!token) {
   throw new Error("TELEGRAM_BOT_TOKEN is not defined in environment variables");
@@ -59,7 +60,7 @@ bot.on("message:voice", async (ctx) => {
 
     // 1. Get file path from Telegram
     const file = await ctx.getFile();
-    const fileUrl = `https://api.telegram.org/file/bot${process.env.TELEGRAM_BOT_TOKEN}/${file.file_path}`;
+    const fileUrl = `https://api.telegram.org/file/bot${token}/${file.file_path}`;
 
     // 2. Download audio file as Buffer
     const response = await fetch(fileUrl);

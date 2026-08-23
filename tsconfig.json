@@ -9,5 +9,5 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["api/**/*.ts", "agent/**/*.ts", "evals/**/*.ts"]
+  "include": ["store/**/*.ts", "api/**/*.ts", "agent/**/*.ts", "evals/**/*.ts"]
 }

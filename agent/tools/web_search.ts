@@ -1,5 +1,6 @@
 import FirecrawlApp from "@mendable/firecrawl-js";
 import { tool, jsonSchema } from "ai";
+import { FIRECRAWL_API_KEY } from "../../store/constants";
 
 interface SearchParameters {
   query: string;
@@ -18,7 +19,7 @@ const webSearch = tool({
     required: ["query"],
   }),
   execute: async ({ query }: SearchParameters) => {
-    const apiKey = process.env.FIRECRAWL_API_KEY;
+    const apiKey = FIRECRAWL_API_KEY;
     if (!apiKey) {
       throw new Error(
         "FIRECRAWL_API_KEY is not defined in environment variables",
