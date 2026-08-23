@@ -10,7 +10,7 @@ import { generateText, stepCountIs } from "ai";
 import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
 import webSearch from "../agent/tools/web_search.js";
-import { TELEGRAM_BOT_TOKEN } from "../store/constants.js";
+import { GROQ_API_KEY, TELEGRAM_BOT_TOKEN } from "../store/constants.js";
 
 export type TextContextType = Filter<Context, "message:text">;
 
@@ -79,7 +79,7 @@ bot.on("message:voice", async (ctx) => {
       {
         method: "POST",
         headers: {
-          Authorization: `Bearer ${process.env.GROQ_API_KEY}`,
+          Authorization: `Bearer ${GROQ_API_KEY}`,
         },
         body: formData,
       },
