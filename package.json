@@ -10,6 +10,7 @@
     "build": "echo 'No build required'",
     "dev": "eve dev",
     "start": "eve start",
+    "test": "vitest",
     "typecheck": "tsc"
   },
   "dependencies": {
@@ -24,8 +25,11 @@
   "devDependencies": {
     "@types/node": "^24.13.3",
     "dotenv": "^17.4.2",
+    "ngrok": "5.0.0-beta.2",
     "tsx": "^4.23.12",
-    "typescript": "^5.3.3"
+    "typescript": "^5.3.3",
+    "vercel": "^59.7.0",
+    "vitest": "^4.1.11"
   },
   "engines": {
     "node": "24.x"
