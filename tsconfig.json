@@ -9,5 +9,6 @@
     "skipLibCheck": true,
     "noEmit": true
   },
-  "include": ["store/**/*.ts", "api/**/*.ts", "agent/**/*.ts", "evals/**/*.ts"]
+  "include": ["store/**/*.ts", "api/**/*.ts", "agent/**/*.ts", "evals/**/*.ts"],
+  "exclude": ["node_modules", ".save-code", "dist", "build"]
 }
