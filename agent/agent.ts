@@ -45,6 +45,7 @@ const SYSTEM_PROMPT = `
 export const agent = {
   model: groq("openai/gpt-oss-20b"),
   systemPrompt: SYSTEM_PROMPT,
+  // instructions: SYSTEM_PROMPT, // Use to test code locally
 };
 
 export default agent;
