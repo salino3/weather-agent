@@ -132,6 +132,7 @@ export default async function handler(req: any, res: any) {
   } catch (err) {
     console.error("Webhook error:", err);
     if (!res.headersSent) {
+      // Even in case of error returning '200' for avoid Telegram send again and again the message
       res.status(200).send("OK");
     }
   }
