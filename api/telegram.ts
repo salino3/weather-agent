@@ -14,6 +14,7 @@ import { sanitizeInput } from "../store/utils.js";
 import { GROQ_API_KEY, TELEGRAM_BOT_TOKEN } from "../store/constants.js";
 
 export type TextContextType = Filter<Context, "message:text">;
+export type VoiceContextType = Filter<Context, "message:voice">;
 
 const token = TELEGRAM_BOT_TOKEN;
 
@@ -55,7 +56,7 @@ bot.on("message:text", async (ctx: TextContextType) => {
 });
 
 //
-bot.on("message:voice", async (ctx) => {
+bot.on("message:voice", async (ctx: VoiceContextType) => {
   try {
     await ctx.replyWithChatAction("typing");
 
