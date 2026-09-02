@@ -10,8 +10,12 @@ import { generateText, stepCountIs } from "ai";
 import agent from "../agent/agent.js";
 import getWeather from "../agent/tools/get_weather.js";
 import webSearch from "../agent/tools/web_search.js";
-import { sanitizeInput } from "../store/utils.js";
-import { GROQ_API_KEY, TELEGRAM_BOT_TOKEN } from "../store/constants.js";
+import { getLanguage, sanitizeInput } from "../store/utils.js";
+import {
+  GROQ_API_KEY,
+  TELEGRAM_BOT_TOKEN,
+  messages,
+} from "../store/constants.js";
 
 export type TextContextType = Filter<Context, "message:text">;
 export type VoiceContextType = Filter<Context, "message:voice">;
@@ -23,6 +27,16 @@ if (!token) {
 }
 
 const bot = new Bot(token);
+
+bot.command("start", async (ctx) => {
+  const lang = getLanguage(ctx);
+  await ctx.reply(messages.start[lang], { parse_mode: "Markdown" });
+});
+
+bot.command("help", async (ctx) => {
+  const lang = getLanguage(ctx);
+  await ctx.reply(messages.help[lang]);
+});
 
 bot.on("message:text", async (ctx: TextContextType) => {
   try {

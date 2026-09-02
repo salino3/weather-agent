@@ -1,3 +1,5 @@
+import { Context } from "grammy";
+
 /**
  * Sanitizes and cleans input text to prevent Prompt Injection attacks
  * and mitigate malicious or control characters.
@@ -26,4 +28,11 @@ export function sanitizeInput(text: string, maxLength: number = 500): string {
       // 7. Truncate to maximum character length
       .slice(0, maxLength)
   );
+}
+
+export function getLanguage(ctx: Context): "it" | "es" | "en" {
+  const langCode = ctx.from?.language_code;
+  if (langCode?.startsWith("it")) return "it";
+  if (langCode?.startsWith("es")) return "es";
+  return "en"; // Fallback di default per tutte le altre lingue
 }
