@@ -28,7 +28,16 @@ bot.on("message:text", async (ctx: TextContextType) => {
   try {
     await ctx.replyWithChatAction("typing");
 
-    const sanitizedTextInput = sanitizeInput(ctx.message.text, 500);
+    const text = ctx.message.text;
+
+    if (text.length > 500) {
+      await ctx.reply(
+        "⚠️ Your message exceeds the 500-character limit. Please keep your messages shorter.",
+      );
+      return;
+    }
+
+    const sanitizedTextInput = sanitizeInput(text, 500);
 
     const result = await generateText({
       model: agent.model,
@@ -59,6 +68,14 @@ bot.on("message:text", async (ctx: TextContextType) => {
 bot.on("message:voice", async (ctx: VoiceContextType) => {
   try {
     await ctx.replyWithChatAction("typing");
+
+    const duration = ctx.message.voice.duration;
+    if (duration > 60) {
+      await ctx.reply(
+        "⚠️ This voice message is too long. Please keep voice notes under 60 seconds (around 500 characters).",
+      );
+      return;
+    }
 
     // 1. Get file path from Telegram
     const file = await ctx.getFile();
@@ -92,6 +109,13 @@ bot.on("message:voice", async (ctx: VoiceContextType) => {
 
     if (!transcribedText || transcribedText.trim() === "") {
       await ctx.reply("Audio not recognized. Please try speaking again.");
+      return;
+    }
+
+    if (transcribedText.length > 500) {
+      await ctx.reply(
+        "⚠️ The transcribed text exceeds the 500-character limit. Please send a shorter voice note.",
+      );
       return;
     }
 
