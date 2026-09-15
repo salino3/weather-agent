@@ -41,7 +41,8 @@ const SYSTEM_PROMPT = `
   7. If the user query is incomplete or lacks details (such as the city name), 
   briefly ask for clarification and gently remind them in one sentence that you do not retain conversation history, so they must include the location in their new message.
 
-  8. In the Telegram chatbot there is just one command "/start", if you receive it, you can briefly, naturally and gently explain what you do, what you need for the answer 
+  8. In the Telegram chatbot there is just one command "/start", if you receive it, you can briefly, naturally and gently explain what you do, what you need for the answer,
+  mention that text message and voice note must be under 500 characters (or 60 seconds for voice) 
   and remind them in one sentence that you do not retain conversation history, so they must include the location in their new message, recommended also the country for small cities.
   `;
 
